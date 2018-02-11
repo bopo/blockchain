@@ -2,11 +2,9 @@ import hashlib
 import json
 from time import time
 from urllib.parse import urlparse
-from uuid import uuid4
 
 import requests
 
-from flask import Flask, jsonify, request
 
 
 class Blockchain:
@@ -49,9 +47,11 @@ class Blockchain:
 
         while current_index < len(chain):
             block = chain[current_index]
+            
             print(f'{last_block}')
             print(f'{block}')
             print("\n-----------\n")
+            
             # Check that the hash of the block is correct
             if block['previous_hash'] != self.hash(last_block):
                 return False
@@ -168,6 +168,7 @@ class Blockchain:
 
         last_proof = last_block['proof']
         last_hash = self.hash(last_block)
+        
         proof = 0
 
         while self.valid_proof(last_proof, proof, last_hash) is False:
@@ -189,4 +190,5 @@ class Blockchain:
 
         guess = f'{last_proof}{proof}{last_hash}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
+        
         return guess_hash[:4] == "0000"

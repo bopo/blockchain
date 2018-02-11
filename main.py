@@ -1,13 +1,10 @@
-import hashlib
-import json
-from time import time
-from urllib.parse import urlparse
 from uuid import uuid4
 
 import requests
 
 from blockchain import Blockchain
 from flask import Flask, jsonify, request
+from argparse import ArgumentParser
 
 # Instantiate the Node
 app = Flask(__name__)
@@ -47,7 +44,7 @@ def mine():
     return jsonify(response), 200
 
 
-@app.route('/transactions/new', methods=['POST'])
+@app.route('/trans/new', methods=['POST'])
 def new_transaction():
     values = request.get_json()
 
@@ -109,8 +106,6 @@ def consensus():
 
 
 if __name__ == '__main__':
-    from argparse import ArgumentParser
-
     parser = ArgumentParser()
     parser.add_argument('-p', '--port', default=5000, type=int, help='port to listen on')
     
