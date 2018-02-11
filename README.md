@@ -35,6 +35,11 @@ $ pipenv install
 Another option for running this blockchain program is to use Docker.  Follow the instructions below to create a local Docker container:
 
 1. Clone this repository
+
+```
+$ git clone https://github.com/bopo/blockchain.git
+```
+
 2. Build the docker container
 
 ```
